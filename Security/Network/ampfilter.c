@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
     if (argc < 4)
     {
         fprintf(stdout, "Coded by Spai3N\nUsage: %s [list.txt] [output.txt] [Threads] [MinRespBytes]\n", argv[0]);
-        exit(-1);
+        exit(-1); 
     }
    	filename = argv[1];
    	loadfile();
@@ -183,10 +183,10 @@ int main(int argc, char *argv[])
    	pthread_t listenthread;
    	pthread_create(&listenthread, NULL, &recievethread, NULL);
    	int i;
-   	for (i = 0; i < threads; i++)
-   	{
+    for (i = 0; i < threads; i++)
+    {
         pthread_create(&thread, NULL, &flood, (void *)i);
-   	}
+    }
     sleep(1);
     printf("Scan in Progress \n");
     char *temp = (char *)malloc(17);
