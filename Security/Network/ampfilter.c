@@ -168,9 +168,9 @@ void loadfile(void)
 
 int main(int argc, char *argv[])
 {
-   	if (argc < 4)
+    if (argc < 4)
     {
-   	   	fprintf(stdout, "Coded by Spai3N\nUsage: %s [list.txt] [output.txt] [THREADS] [MinRespBytes]\n", argv[0]);
+        fprintf(stdout, "Coded by Spai3N\nUsage: %s [list.txt] [output.txt] [Threads] [MinRespBytes]\n", argv[0]);
         exit(-1);
     }
    	filename = argv[1];
@@ -185,46 +185,46 @@ int main(int argc, char *argv[])
    	int i;
    	for (i = 0; i < threads; i++)
    	{
-   	   	pthread_create(&thread, NULL, &flood, (void *)i);
+        pthread_create(&thread, NULL, &flood, (void *)i);
     }
-   	sleep(1);
-   	printf("Scan in Progress \n");
-   	char *temp = (char *)malloc(17);
-   	memset(temp, 0, 17);
-   	sprintf(temp, "IP Found");
-   	printf("%-16s", temp);
-   	memset(temp, 0, 17);
-   	sprintf(temp, "IP/s");
-   	printf("%-16s", temp);
-   	memset(temp, 0, 17);
-   	sprintf(temp, "Bytes/s");
-   	printf("%-16s", temp);
+    sleep(1);
+    printf("Scan in Progress \n");
+    char *temp = (char *)malloc(17);
     memset(temp, 0, 17);
-   	sprintf(temp, "Threads");
-   	printf("%-16s", temp);
+    sprintf(temp, "IP Found");
+    printf("%-16s", temp);
+    memset(temp, 0, 17);
+    sprintf(temp, "IP/s");
+    printf("%-16s", temp);
+    memset(temp, 0, 17);
+    sprintf(temp, "Bytes/s");
+    printf("%-16s", temp);
+    memset(temp, 0, 17);
+    sprintf(temp, "Threads");
+    printf("%-16s", temp);
     memset(temp, 0, 17);
     sprintf(temp, "Percent Done");
     printf("%s", temp);
-   	printf("\n");
-   	char *new;
-   	new = (char *)malloc(16 * 6);
-   	while (running_threads > 0)
+    printf("\n");
+    char *new;
+    new = (char *)malloc(16 * 6);
+    while (running_threads > 0)
     {
-   	   	printf("\r");
-   	   	memset(new, '\0', 16 * 6);
-   	   	sprintf(new, "%s|%-15lu", new, found_srvs);
-   	   	sprintf(new, "%s|%-15d", new, scanned);
-   	   	sprintf(new, "%s|%-15d", new, bytes_sent);
-   	   	sprintf(new, "%s|%-15d", new, running_threads);
-   	   	memset(temp, 0, 17);
+        printf("\r");
+        memset(new, '\0', 16 * 6);
+        sprintf(new, "%s|%-15lu", new, found_srvs);
+        sprintf(new, "%s|%-15d", new, scanned);
+        sprintf(new, "%s|%-15d", new, bytes_sent);
+        sprintf(new, "%s|%-15d", new, running_threads);
+        memset(temp, 0, 17);
         sprintf(new, "%s|%s", new, temp);
-   	   	printf("%s", new);
-   	   	fflush(stdout);
+        printf("%s", new);
+        fflush(stdout);
         bytes_sent=0;
         scanned = 0;
         sleep(1);
     }
-   	printf("\n");
+    printf("\n");
     fclose(fd);
     return 0;
 }
