@@ -156,7 +156,7 @@ void loadfile(void)
     {
         if ((buf[strlen(buf) - 1] == '\n') || (buf[strlen(buf) - 1] == '\r')) {
             buf[strlen(buf) - 1] = 0x00;
-            if (num > 1000000) { break; }
+            if (num > 1000000) {break;}
             address[num] = inet_addr(buf);
             num++;
         } else {
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
    	for (i = 0; i < threads; i++)
    	{
         pthread_create(&thread, NULL, &flood, (void *)i);
-    }
+   	}
     sleep(1);
     printf("Scan in Progress \n");
     char *temp = (char *)malloc(17);
