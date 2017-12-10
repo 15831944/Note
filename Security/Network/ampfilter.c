@@ -80,15 +80,11 @@ void *flood(void *par1)
             stop = 1;
         } else {
             n++;
-<<<<<<< HEAD
         }
-=======
-		}
->>>>>>> a33714df09eac460c3d65d60167eb01464adb14d
         struct in_addr destip_addr;
         ulong destaddr = address[n];
-        destip_addr.s_addr=destaddr;
-        dest.sin_addr.s_addr=destip_addr.s_addr;
+        destip_addr.s_addr = destaddr;
+        dest.sin_addr.s_addr = destip_addr.s_addr;
         struct sockaddr_in servaddr;
         bzero(&servaddr, sizeof(servaddr));
         servaddr.sin_family = AF_INET;
@@ -156,7 +152,6 @@ void loadfile(void)
         perror("Opening hostfile");
         exit(-1);
     }
-
     while (fgets(buf, sizeof buf, hostfile) != NULL)
     {
         if ((buf[strlen(buf) - 1] == '\n') || (buf[strlen(buf) - 1] == '\r')) {
