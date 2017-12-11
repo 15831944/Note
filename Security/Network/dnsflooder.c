@@ -201,7 +201,7 @@ void *flood(void *par1)
 
     while (1)
     {
-        if(j == 2)
+        if (j == 2)
         {
             usleep(100);
             j = 0;
