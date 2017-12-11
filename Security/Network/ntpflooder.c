@@ -155,11 +155,13 @@ int main(int argc, char *argv[])
 		fprintf(stdout, "Usage: %s <target IP> <port> <reflection file> <threads> <pps limiter, -1 for no limit> <time>\n", argv[0]);
 		exit(-1);
 	}
+
 	srand(time(NULL));
+
 	int i = 0;
 	head = NULL;
 	int max_len = 128;
-	char *buffer = (char *) malloc(max_len);
+	char *buffer = (char *)malloc(max_len);
 	buffer = memset(buffer, 0x00, max_len);
 	int num_threads = atoi(argv[4]);
 	int maxpps = atoi(argv[5]);
