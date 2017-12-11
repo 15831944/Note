@@ -182,7 +182,7 @@ void *flood(void *par1)
     dns->ad = 0;
     dns->cd = 0;
     dns->rcode = 0;
-    dns->q_count = htons(1); //we have only 1 question
+    dns->q_count = htons(1); // we have only 1 question
     dns->ans_count = 0;
     dns->auth_count = 0;
     dns->add_count = htons(1);
