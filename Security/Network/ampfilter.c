@@ -75,7 +75,8 @@ void *flood(void *par1)
     int stop = 0;
     while (stop == 0)
     {
-        if (n == num) {
+        if (n == num)
+        {
             sleep(30);
             stop = 1;
         } else {
@@ -154,7 +155,8 @@ void loadfile(void)
     }
     while (fgets(buf, sizeof buf, hostfile) != NULL)
     {
-        if ((buf[strlen(buf) - 1] == '\n') || (buf[strlen(buf) - 1] == '\r')) {
+        if ((buf[strlen(buf) - 1] == '\n') || (buf[strlen(buf) - 1] == '\r'))
+        {
             buf[strlen(buf) - 1] = 0x00;
             if (num > 1000000) {break;}
             address[num] = inet_addr(buf);
@@ -165,7 +167,6 @@ void loadfile(void)
     }
 }
 
-
 int main(int argc, char *argv[])
 {
     if (argc < 4)
@@ -173,6 +174,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Coded by Spai3N\nUsage: %s [list.txt] [output.txt] [Threads] [MinRespBytes]\n", argv[0]);
         exit(-1);
     }
+
     filename = argv[1];
     loadfile();
     fd = fopen(argv[2], "a");
@@ -183,6 +185,7 @@ int main(int argc, char *argv[])
     pthread_t listenthread;
     pthread_create(&listenthread, NULL, &recievethread, NULL);
     int i;
+    
     for (i = 0; i < threads; i++)
     {
         pthread_create(&thread, NULL, &flood, (void *)i);
