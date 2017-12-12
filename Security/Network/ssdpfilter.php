@@ -1,5 +1,4 @@
 <?php
-
 ini_set("memory_limit", "512M");
 set_time_limit(0);
 ignore_user_abort(true);
@@ -57,7 +56,7 @@ $array = array_unique($array);
 $part = partition($array, $childcount);
 file_put_contents($argv[2], "");
 
-for ($i = 0; $i < $childcount; $i ++)
+for ($i = 0; $i < $childcount; $i++)
 {
     $pid = pcntl_fork();
     if ($pid == -1)
@@ -96,3 +95,4 @@ for ($j = 0; $j < $childcount; $j++)
 {
     $pid = pcntl_wait($status);
 }
+?>
