@@ -52,13 +52,13 @@
 
 ```
 # ./configure \
---user=nginx \						# 指定启动程序所属用户
---group=nginx \						# 指定组
+--user=nginx \				# 指定启动程序所属用户
+--group=nginx \				# 指定组
 --prefix=/usr/local/nginx \ 		# 指定安装路径
---with-http_ssl_module \			# 启用SSL支持
+--with-http_ssl_module \		# 启用SSL支持
 --with-http_stub_status_module \	# 监控Nginx状态
 --with-http_gzip_static_module \	# 启用gzip压缩
---with-pcre							# 启用正则表达式
+--with-pcre				# 启用正则表达式
 
 # make && make install
 ```
@@ -92,10 +92,10 @@ nginx version: Apache/2.4.29
 │   ├── uwsgi_params.default
 │   └── win-utf
 ├── fastcgi_temp
-├── html				# Nginx默认站点目录
+├── html			# Nginx默认站点目录
 │   ├── 50x.html		# 大于500的错误页
 │   └── index.html		# 首页
-├── logs				# Nginx自身日志目录
+├── logs			# Nginx自身日志目录
 │   ├── access.log		# 访问日志
 │	├── error.log		# 错误日志
 │   └── nginx.pid		# Nginx运行时的PID				
