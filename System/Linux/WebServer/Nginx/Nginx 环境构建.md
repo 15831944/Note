@@ -1,11 +1,11 @@
 ## 0x01 关于Nginx
 > Nginx("engine x") 作为Web服务器软件，是一个轻量级、高性能的HTTP和反向代理服务器，负载均衡服务器，及电子邮件IMAP/POP3/SMTP 服务器。  
 > Nginx性能稳定、功能丰富、维护简单、效率高、并发能力强、处理静态文件速度快且消耗系统资源极少。  
-> 更多请直接参考百科或[官方文档](http://nginx.org/docs)...
+> 更多请直接参考百科或[官方文档](http://nginx.org/docs) ...
 
 ## 0x02 演示环境
-> CentOS 7.2 x86_64 - 最小化安装，带基础库。
-> nginx-1.12.2 - 编译安装，这是当前最新稳定版本（实际生产环境中版本可稍微降低一些，稳定为主；选择版本时应尽量避开一些已知的高危漏洞版本；）
+> CentOS 7.2 x86_64 - 最小化安装，带基础库。  
+> nginx-1.12.2 - 编译安装，这是当前最新稳定版本（实际生产环境中版本可稍微降低一些，稳定为主；选择版本时应尽量避开一些已知的高危漏洞版本）
 
 ## 0x03 Nginx依赖库
 > zlib - 用于支持gzip模块  
@@ -109,11 +109,11 @@ nginx version: Apache/2.4.29
 * Nginx服务管理工具用法
 ```
 # cd /usr/local/nginx/sbin
-# ./nginx			# 启动
-# ./nginx -s stop	# 停止
-# ./nginx -s quit	# 退出
-# ./nginx -s reopen # 重启
-# ./nginx -s reload # 重载
+# ./nginx				# 启动
+# ./nginx -s stop		# 停止
+# ./nginx -s quit		# 退出
+# ./nginx -s reopen		# 重启
+# ./nginx -s reload		# 重载
 # kill -HUP $(cat /usr/local/nginx/logs/nginx.pid)	# 平滑启动
 ```
 
