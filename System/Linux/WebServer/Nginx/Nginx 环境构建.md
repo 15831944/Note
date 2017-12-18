@@ -76,7 +76,7 @@ nginx version: Apache/2.4.29
 /usr/local/nginx
 ├── client_body_temp
 ├── conf			# Nginx配置文件目录
-│   ├── fastcgi.conf			# 后端动态脚本接口配置；如：PHP、Python、Java
+│   ├── fastcgi.conf		# 后端动态脚本接口配置；如：PHP、Python、Java
 │   ├── fastcgi.conf.default    
 │   ├── fastcgi_params
 │   ├── fastcgi_params.default
@@ -84,7 +84,7 @@ nginx version: Apache/2.4.29
 │   ├── koi-win
 │   ├── mime.types
 │   ├── mime.types.default
-│   ├── nginx.conf			# Nginx主配置文件
+│   ├── nginx.conf		# Nginx主配置文件
 │   ├── nginx.conf.default
 │   ├── scgi_params
 │   ├── scgi_params.default
@@ -92,13 +92,13 @@ nginx version: Apache/2.4.29
 │   ├── uwsgi_params.default
 │   └── win-utf
 ├── fastcgi_temp
-├── html			# Nginx默认站点目录
-│   ├── 50x.html			# 大于500的错误页
-│   └── index.html			# 首页
-├── logs			# Nginx自身日志目录
-│   ├── access.log			# 访问日志
-│	├── error.log			# 错误日志
-│   └── nginx.pid			# Nginx运行时的PID				
+├── html				# Nginx默认站点目录
+│   ├── 50x.html		# 大于500的错误页
+│   └── index.html		# 首页
+├── logs				# Nginx自身日志目录
+│   ├── access.log		# 访问日志
+│	├── error.log		# 错误日志
+│   └── nginx.pid		# Nginx运行时的PID				
 ├── proxy_temp
 ├── sbin
 │    └── nginx			# Nginx服务管理工具
@@ -109,7 +109,7 @@ nginx version: Apache/2.4.29
 * Nginx服务管理工具用法
 ```
 # cd /usr/local/nginx/sbin
-# ./nginx		# 启动
+# ./nginx			# 启动
 # ./nginx -s stop		# 停止
 # ./nginx -s quit		# 退出
 # ./nginx -s reopen		# 重启
