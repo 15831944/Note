@@ -2,6 +2,22 @@
 #
 # Desc: Install Nginx WebServer
 # Author: vforbox <vforbox@gmail.com>
+# Env: Centos 7.2
+
+# Identity check
+if [[ $(id -u) -ne 0 ]]; then
+	echo "error: user must be an administrator"
+	exit 1
+fi
+
+# Whether or not it has been installed
+if [[ -d /usr/local/nginx || -f $(which nginx) ]]; then
+	echo "Already installed"
+	exit 1
+fi
+
+# System version Centos 7.x
+[ -x /usr/bin/systemctl ] || exit 1;
 
 # Settings
 SOFT_SRC_DIR="/usr/local/src/"
@@ -15,10 +31,11 @@ wget ${NGINX_DOWN}${NGINX_VER}.tar.gz -O ${SOFT_SRC_DIR}${NGINX_VER}.tar.gz
 VALUE=$? && [ ${VALUE} = 0 ] || exit 1
 if [ -e "${SOFT_SRC_DIR}${NGINX_VER}.tar.gz" ]; then
 	cd ${SOFT_SRC_DIR} && tar -zxf "${NGINX_VER}.tar.gz"
-	[[ $? = 0 ]] && cd ${NGINX_VER}
+	VALUE=$? &&  [ ${VALUE} = 0 ] && cd ${NGINX_VER}
 	sed -i "s/${NGINX_VER##*-}/2.4.29/;s/${NGINX_VER%%-*}\//Apache\//g" src/core/nginx.h
 	[ ! -d ${SITE_DIR} ] && mkdir -p ${SITE_DIR}
-	useradd -d ${SITE_DIR} -s /sbin/nologin -M ${NGINX_VER%%-*}
+	$(id ${NGINX_VER%%-*}) > /dev/null 2>&1 VALUE=$?
+	[ ${VALUE} = 1 ] || useradd -d ${SITE_DIR} -s /sbin/nologin -M ${NGINX_VER%%-*}
 	./configure \
 	--user=nginx \
 	--group=nginx \
@@ -55,5 +72,4 @@ echo "Install Nginx" > /usr/local/nginx/html/index.html
 curl -v http://localhost/
 
 # Clear
-rm -rf ${NGINX_DOWN}${NGINX_VER}*
-rm -rf $0
+rm -rf ${SOFT_SRC_DIR}${NGINX_VER}${NGINX_VER}
