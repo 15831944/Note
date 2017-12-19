@@ -179,7 +179,8 @@ Starting nginx (via systemctl):                            [  OK  ]
 > 使用Shell脚本一键安装，与文档一致
 
 ```
-wget -q https://raw.githubusercontent.com/vforbox/Note/master/System/Linux/ShellScript/nginx_install.sh | sh
+# wget -q https://raw.githubusercontent.com/vforbox/Note/master/System/Linux/ShellScript/nginx_install.sh
+# sh nginx_install.sh
 ```
 
 ## 0x06 总结
