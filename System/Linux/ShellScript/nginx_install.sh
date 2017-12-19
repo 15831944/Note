@@ -11,7 +11,7 @@ NGINX_DOWN="http://nginx.org/download/"
 
 # Install
 [ ! -f $(which wget) ] && yum -y install wget > /dev/null 2>&1
-wget -q ${NGINX_DOWN}${NGINX_VER}.tar.gz -O ${SOFT_SRC_DIR}${NGINX_VER}.tar.gz
+wget ${NGINX_DOWN}${NGINX_VER}.tar.gz -O ${SOFT_SRC_DIR}${NGINX_VER}.tar.gz
 VALUE=$? && [ ${VALUE} = 0 ] || exit 1
 if [ -e "${SOFT_SRC_DIR}${NGINX_VER}.tar.gz" ]; then
 	cd ${SOFT_SRC_DIR} && tar -zxf "${NGINX_VER}.tar.gz"
