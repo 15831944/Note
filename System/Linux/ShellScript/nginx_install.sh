@@ -64,8 +64,8 @@ wget -q https://raw.githubusercontent.com/vforbox/Note/master/System/Linux/Shell
 VALUE=$? && [ ${VALUE} = 0 ] || exit 1
 chmod 755 /etc/init.d/nginx
 chkconfig --add nginx
-chkconfig nginx on
-service nginx start
+systemctl enable nginx.service
+systemctl start nginx.service
 
 # test
 echo "Install Nginx" > /usr/local/nginx/html/index.html
