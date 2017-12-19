@@ -14,7 +14,7 @@ return [0, 1].
 
 ---
 
-* **@Python**
+* **Python**
 > 计算列表长度。
 > 使用双重循环遍历下标，判断列表nums中的每一个元素数据nums[i]和nums[j]的元素相加是否等于目标target。
 > 时间复杂度为O(n^2)，被称为穷举法。
@@ -36,7 +36,7 @@ def twoSum(nums, target):
     return [0, 0]
 ```
 
-* **@Python**
+* **Python**
 > 使用字典dict在查找key时使用的是hashmap的方式，查找速度较快。
 > 定义新的缓冲区，可以得到“空间换时间”的效果，时间复杂度为O(n)。
 
@@ -58,7 +58,7 @@ def twoSum(nums, target):
     return [0, 0]
 ```
 
-* **@C**
+* **C**
 > 与Python的穷举法思路一致。
 
 ```
