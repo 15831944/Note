@@ -175,6 +175,13 @@ Starting nginx (via systemctl):                            [  OK  ]
 	...
 ```
 
-## 0x05 总结
+## 0x05 一键安装
+> 使用Shell脚本一键安装，与文档一致
+
+```
+wget -q https://raw.githubusercontent.com/vforbox/Note/master/System/Linux/ShellScript/nginx_install.sh | sh
+```
+
+## 0x06 总结
 > Nginx的主要作用还是为了更好的提供web服务，一切还以满足实际业务需求和高性能为主。  
 > 部署环境很简单，实际部署过程中做好这些最基本的防御措施即可。
