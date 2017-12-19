@@ -56,6 +56,7 @@ reload()
 	echo -n $"Reloading ${PROG_NAME}: "
     killproc -p ${NGINX_PID} ${NGINX_SBIN} -HUP
 	RETVAL=$?
+	echo
     return ${RETVAL}
 }
 
