@@ -13,6 +13,9 @@
 > openssl - 用于支持ssl功能  
 
 * 直接使用Yum安装Nginx所需依赖库和编译器
+
+> yum源建议使用[阿里源](http://mirrors.aliyun.com/repo/Centos-6.repo)，并保持缓存是最新的；
+
 ```
 # yum install pcre pcre-devel openssl openssl-devel zlib zlib-devel gcc gcc-c++ automake -y
 ```
@@ -54,10 +57,17 @@
 # ./configure \
 --user=nginx \				# 指定启动程序所属用户
 --group=nginx \				# 指定组
---prefix=/usr/local/nginx \ 		# 指定安装路径
---with-http_ssl_module \		# 启用SSL支持
+--prefix=/usr/local/nginx \			# 指定安装路径
+--sbin-path=/usr/sbin/nginx \		# 指定存放Nginx管理工具二进制文件的路径
+--conf-path=/etc/nginx/nginx.conf \			# 指定配置文件路径
+--pid-path=/var/run/nginx.pid \			# 指定nginx.pid文件路径
+--lock-path=/var/lock/subsys/nginx \		# 指定nginx.lock文件路径（安装文件锁定，防止安装文件被别人利用）
+--error-log-path=/var/log/nginx/error.log \			# 指定错误日志文件路径
+--http-log-path=/var/log/nginx/access.log \			# 指定访问日志文件路径
 --with-http_stub_status_module \	# 监控Nginx状态
 --with-http_gzip_static_module \	# 启用gzip压缩
+--with-http_realip_module \		# 获取真实IP模块
+--with-http_ssl_module \		# 启用SSL支持
 --with-pcre				# 启用正则表达式
 
 # make && make install
@@ -65,56 +75,63 @@
 
 * make安装完成后， 可通过`nginx -V` 查看版本号
 ```
-# /usr/local/nginx/sbin/nginx -V	# 可以看到，我们修改后的版本号和名称，此时已经生效了
+# /usr/sbin/nginx -V	# 可以看到，我们修改后的版本号和名称，此时已经生效了
 nginx version: Apache/2.4.29
 	...
 ```
 
 * Nginx的基本目录结构
 ```
-# tree -L 3 /usr/local/nginx
-/usr/local/nginx
+# tree -L 2 /etc/nginx/		# Nginx配置文件目录
+/etc/nginx/
+├── conf.d
+	└── default.conf		# 虚拟主机默认配置文件
+├── fastcgi.conf		# 后端动态脚本接口配置；如：PHP、Python、Java
+├── fastcgi.conf.default    
+├── fastcgi_params
+├── fastcgi_params.default
+├── koi-utf
+├── koi-win
+├── mime.types
+├── mime.types.default
+├── nginx.conf		# Nginx主配置文件
+├── nginx.conf.default
+├── scgi_params
+├── scgi_params.default
+├── uwsgi_params
+├── uwsgi_params.default
+└── win-utf
+
+# tree -L 2 /usr/local/nginx/	# Nginx安装目录
+/usr/local/nginx/
 ├── client_body_temp
-├── conf			# Nginx配置文件目录
-│   ├── fastcgi.conf		# 后端动态脚本接口配置；如：PHP、Python、Java
-│   ├── fastcgi.conf.default    
-│   ├── fastcgi_params
-│   ├── fastcgi_params.default
-│   ├── koi-utf
-│   ├── koi-win
-│   ├── mime.types
-│   ├── mime.types.default
-│   ├── nginx.conf		# Nginx主配置文件
-│   ├── nginx.conf.default
-│   ├── scgi_params
-│   ├── scgi_params.default
-│   ├── uwsgi_params
-│   ├── uwsgi_params.default
-│   └── win-utf
 ├── fastcgi_temp
 ├── html			# Nginx默认站点目录
 │   ├── 50x.html		# 大于500的错误页
 │   └── index.html		# 首页
-├── logs			# Nginx自身日志目录
-│   ├── access.log		# 访问日志
-│	├── error.log		# 错误日志
-│   └── nginx.pid		# Nginx运行时的PID				
 ├── proxy_temp
-├── sbin
-│    └── nginx			# Nginx服务管理工具
 ├── scgi_temp
 └── uwsgi_temp
+
+# tree -L 2 /var/log/nginx/		# Nginx自身日志目录
+/var/log/nginx/
+├── access.log		# 访问日志
+└── error.log		# 错误日志
+
+# tree -L 2 /usr/sbin/
+├── nginx		# Nginx服务管理工具
+└── ...		
 ```
 
 * Nginx服务管理工具用法
 ```
-# cd /usr/local/nginx/sbin
+# cd /usr/sbin/
 # ./nginx			# 启动
 # ./nginx -s stop		# 停止
 # ./nginx -s quit		# 退出
 # ./nginx -s reopen		# 重启
 # ./nginx -s reload		# 重载
-# kill -HUP $(cat /usr/local/nginx/logs/nginx.pid)	# 平滑启动
+# kill -HUP $(cat /var/run/nginx.pid)	# 平滑启动
 ```
 
 * 配置Nginx管理脚本，并设置开机启动
