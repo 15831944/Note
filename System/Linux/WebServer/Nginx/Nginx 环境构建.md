@@ -57,13 +57,13 @@
 # ./configure \
 --user=nginx \				# 指定启动程序所属用户
 --group=nginx \				# 指定组
---prefix=/usr/local/nginx \			# 指定安装路径
+--prefix=/usr/local/nginx \		# 指定安装路径
 --sbin-path=/usr/sbin/nginx \		# 指定存放Nginx管理工具二进制文件的路径
---conf-path=/etc/nginx/nginx.conf \			# 指定配置文件路径
---pid-path=/var/run/nginx.pid \			# 指定nginx.pid文件路径
---lock-path=/var/lock/subsys/nginx \		# 指定nginx.lock文件路径（安装文件锁定，防止安装文件被别人利用）
---error-log-path=/var/log/nginx/error.log \			# 指定错误日志文件路径
---http-log-path=/var/log/nginx/access.log \			# 指定访问日志文件路径
+--conf-path=/etc/nginx/nginx.conf \	# 指定配置文件路径
+--pid-path=/var/run/nginx.pid \		# 指定nginx.pid文件路径
+--lock-path=/var/lock/subsys/nginx \	# 指定nginx.lock文件路径（安装文件锁定，防止安装文件被别人利用）
+--error-log-path=/var/log/nginx/error.log \	# 指定错误日志文件路径
+--http-log-path=/var/log/nginx/access.log \	# 指定访问日志文件路径
 --with-http_stub_status_module \	# 监控Nginx状态
 --with-http_gzip_static_module \	# 启用gzip压缩
 --with-http_realip_module \		# 获取真实IP模块
@@ -85,7 +85,7 @@ nginx version: Apache/2.4.29
 # tree -L 2 /etc/nginx/		# Nginx配置文件目录
 /etc/nginx/
 ├── conf.d
-	└── default.conf		# 虚拟主机默认配置文件
+	└── default.conf	# 虚拟主机默认配置文件
 ├── fastcgi.conf		# 后端动态脚本接口配置；如：PHP、Python、Java
 ├── fastcgi.conf.default    
 ├── fastcgi_params
@@ -94,7 +94,7 @@ nginx version: Apache/2.4.29
 ├── koi-win
 ├── mime.types
 ├── mime.types.default
-├── nginx.conf		# Nginx主配置文件
+├── nginx.conf			# Nginx主配置文件
 ├── nginx.conf.default
 ├── scgi_params
 ├── scgi_params.default
@@ -113,7 +113,7 @@ nginx version: Apache/2.4.29
 ├── scgi_temp
 └── uwsgi_temp
 
-# tree -L 2 /var/log/nginx/		# Nginx自身日志目录
+# tree -L 2 /var/log/nginx/	# Nginx自身日志目录
 /var/log/nginx/
 ├── access.log		# 访问日志
 └── error.log		# 错误日志
